@@ -7,13 +7,13 @@ import com.vaadin.server.VaadinServlet
 import com.vaadin.ui.Button
 import com.vaadin.ui.Grid
 import com.vaadin.ui.Label
-import com.vaadin.ui.TextField
 import com.vaadin.ui.UI
 import com.vaadin.ui.VerticalLayout
 import java.math.BigDecimal
 import javax.servlet.annotation.WebServlet
 import org.uqbar.domain.Conversion
 import org.uqbar.domain.ConversorFactory
+import org.vaadin.ui.NumberField
 
 /** 
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -33,10 +33,13 @@ class MyUI extends UI {
 			height = "15"
 		]
 		
-		val txtMonto = new TextField() => [
+		val txtMonto = new NumberField() => [
 			caption = "Monto en pesos"
 			placeholder = "Monto a convertir en $$$"
 			width = "300"
+			decimalAllowed = true
+			decimalPrecision = 2
+			negativeAllowed = false
 		]
 		
 		val grillaCotizaciones = new Grid<Conversion>(Conversion) => [
@@ -46,7 +49,8 @@ class MyUI extends UI {
 
 		val Button btnConvertir = new Button("Convertir")
 		btnConvertir.addClickListener([ e |
-			conversiones.forEach [ conversion | conversion.convertir(new BigDecimal(txtMonto.value)) ]
+			val monto = if (txtMonto.value ?: "" === "") "0" else txtMonto.value
+			conversiones.forEach [ conversion | conversion.convertir(new BigDecimal(monto)) ]
 			grillaCotizaciones.getDataProvider().refreshAll
 		])
 			
