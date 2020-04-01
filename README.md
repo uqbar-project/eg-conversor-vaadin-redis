@@ -2,7 +2,17 @@
 
 Ejemplo de conversor de moneda utilizando a Redis como cache para almacenar las cotizaciones. El mismo utiliza el plugin de Jedis para conectarse con la base de datos. Podés seguir la guía de persistencia en [este link](https://docs.google.com/document/d/1eTmmFrADzvp2H9Vg88_ChqRc61U0tNx-FXntkmzmvlE/edit?usp=sharing)
 
-## Redis
+# El ejemplo
+
+![demo](./video/demo.gif)
+
+El ejemplo está escrito en Vaadin, y muestra una pantalla muy simple, donde
+
+- inicialmente cargamos las cotizaciones del día de hoy para el dólar, euro y real, y la cotización del día anterior del dólar
+- luego permitimos ingresar un monto numérico, equivalente al valor en pesos
+- al presionar el botón convertir, se visualiza una lista de las conversiones correspondientes a cada cotización
+
+# REDIS
 
 Es una Base de datos del tipo Key-Value open source. Simplemente guardan tuplas que contienen una clave y su valor. Cuándo se quiere recuperar un dato, simplemente se busca por su clave y se recupera el mismo. Los datos son BLOB (Binary Large Object), por lo tanto son opacos (el motor no saben que es), dejando esta responsabilidad en el dominio de la aplicación
 

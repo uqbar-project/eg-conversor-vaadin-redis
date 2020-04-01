@@ -23,7 +23,7 @@ import org.vaadin.ui.NumberField
  * overridden to add component to the user interface and initialize non-component functionality.
  */
 @Theme("mytheme")
-class MyUI extends UI {
+class ConversorUI extends UI {
 	override protected void init(VaadinRequest vaadinRequest) {
 		val conversiones = ConversorFactory.generarConversiones
 		
@@ -58,7 +58,7 @@ class MyUI extends UI {
 		setContent(layout)
 	}
 
-	@WebServlet(urlPatterns="/*", name="MyUIServlet", asyncSupported=true) @VaadinServletConfiguration(ui=MyUI, productionMode=false)
-	static class MyUIServlet extends VaadinServlet {
+	@WebServlet(urlPatterns="/*", name="ConversorUIServlet", asyncSupported=true) @VaadinServletConfiguration(ui=ConversorUI, productionMode=false)
+	static class ConversorUIServlet extends VaadinServlet {
 	}
 }
